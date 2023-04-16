@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+                <ul class=flashes>
+                        {% for category, message in messages %}
+                                <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                </ul>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="{{ url_for('post_game') }}">
+                {{ form.crsf_token }}
+                <p>{{ form.way.label }} {{ form.way() }}</p>
+                <p>{{ form.number_steps.label }} {{ form.number_steps() }}</p>
+                <p>{{ form.submit() }}</p>
+        </form>
+
+{% endblock %}
