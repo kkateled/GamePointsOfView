@@ -26,7 +26,7 @@ def post_index():
     form = Login()
     if form.validate_on_submit():
         name = form.name.data
-        flash(f"Добро пожаловать в игру {name}")
+        flash(f"Добро пожаловать в игру {name}. Найдите балкон.")
         return redirect(url_for(get_game.__name__))
     else:
         raise RuntimeError("wrong form data")
